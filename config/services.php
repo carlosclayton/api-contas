@@ -30,9 +30,13 @@ return [
     ],
 
     'stripe' => [
-        'model' => ApiContas\User::class,
+        'model' => ApiContas\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'facebook' => [
+        'client_id' => '1723716514382371',
+        'client_secret' => '5026b9d2d24773d2265d37544df0348a',
+        'redirect' => 'http://localhost:8000/'
+    ]
 ];

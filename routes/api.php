@@ -25,6 +25,7 @@ ApiRoute::version('v1', function () {
         'expires' => 5
     ], function () {
         ApiRoute::post('access_token', 'AuthController@accessToken')->name('.access_token');
+        ApiRoute::post('register', 'RegisterUserController@store');
         ApiRoute::group([
             'middleware' => 'api.auth'
         ], function () {
@@ -33,6 +34,7 @@ ApiRoute::version('v1', function () {
             ApiRoute::post('/logout', 'AuthController@logout')->name('.logout');
             ApiRoute::post('/refresh_token', 'AuthController@refreshToken')->name('.refresh_token');
             ApiRoute::post('/user', 'AuthController@user')->name('.user');
+            ApiRoute::patch('/user/settings', 'UsersController@updateSettings')->name('.update-settings');
         });
     });
 });

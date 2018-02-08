@@ -1,10 +1,8 @@
 <?php
 
 namespace ApiContas\Http\Controllers;
-
+use ApiContas\Http\Requests\UserSettingRequest;
 use ApiContas\Repositories\UserRepository;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class UsersController extends Controller
 {
@@ -23,6 +21,13 @@ class UsersController extends Controller
             'data' => $users
         ));
     }
+
+    public function updateSettings(UserSettingRequest $request){
+        $data = $request->only('password');
+        $this->repository->update($data,$request->user('api')->id);
+        return $request->user('api');
+    }
+
 }
 
 
