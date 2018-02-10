@@ -38,5 +38,10 @@ return [
         'client_id' => '1723716514382371',
         'client_secret' => '5026b9d2d24773d2265d37544df0348a',
         'redirect' => 'http://localhost:8000/'
-    ]
+    ],
+    'google' => [
+        'client_id' => '46822097390-vqvrbs8ta949qas59jctbrthsm2siv7g.apps.googleusercontent.com',
+        'client_secret' => 'pYCMEvt36bLVTEr7Tr7FsEG4',
+        'redirect' => 'http://localhost:8000/callback',
+    ],
 ];

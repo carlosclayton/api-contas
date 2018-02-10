@@ -5,9 +5,6 @@ namespace ApiContas\Http\Controllers;
 use ApiContas\Criteria\OrderByFieldCriteria;
 use Illuminate\Http\Request;
 
-use ApiContas\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use ApiContas\Http\Requests\BillsCreateRequest;
 use ApiContas\Http\Requests\BillsUpdateRequest;
 use ApiContas\Repositories\BillsRepository;
@@ -41,7 +38,7 @@ class BillsController extends Controller
      */
     public function index()
     {
-        $this->repository->pushCriteria(new OrderByFieldCriteria('id', 'desc'));
+        $this->repository->pushCriteria(new OrderByFieldCriteria('id', 'asc'));
         $bills = $this->repository->paginate(5);
         return response()->json([
             'data' => $bills,

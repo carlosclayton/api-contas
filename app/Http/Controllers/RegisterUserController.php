@@ -16,7 +16,8 @@ class RegisterUserController extends Controller
 
     public function store(Request $request){
         $token = $request->get('token');
-        $facebook = \Socialite::driver('facebook');
+        $driver = $request->get('driver');
+        $facebook = \Socialite::driver($driver);
         $userSocial = $facebook->userFromToken($token);
         $user = $this->respository->findByField('email', $userSocial->email)->first();
         if(!$user){

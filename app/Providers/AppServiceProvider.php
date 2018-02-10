@@ -2,7 +2,10 @@
 
 namespace ApiContas\Providers;
 
+use ApiContas\Models\Bills;
+use ApiContas\Transformers\BillsTransformer;
 use Dingo\Api\Exception\Handler;
+use Dingo\Api\Transformer\Factory;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\ValidationException;
@@ -17,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->register();
+        $this->registerTransformer();
     }
 
     /**
@@ -46,6 +50,10 @@ class AppServiceProvider extends ServiceProvider
                 'validation_errors' => $exception->validator->getMessageBag()->toArray()
             ], 401);
         });
-
     }
+    public function registerTransformer(){
+        $transformer = app(Factory::class);
+        $transformer->register(Bills::class, BillsTransformer::class);
+    }
+
 }
